@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/1588baad-5dd1-4700-95e3-7fbf0a5782c0/AppServices/subscriptions/1588baad-5dd1-4700-95e3-7fbf0a5782c0/resourceGroups/APIS_2025/providers/Microsoft.Web/sites/alex",
-    "appService.deploySubpath": "."
-}

@@ -1,6 +1,0 @@
-Flask
-mysql-connector-python
-Flask-Cors
-gunicorn
-pandas
-numpy
