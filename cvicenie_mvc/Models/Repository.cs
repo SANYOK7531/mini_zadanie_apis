@@ -6,8 +6,13 @@ namespace cvicenie_mvc.Models
 {
     public class Repository
     {
+        private readonly string connectionString;
         public static List<StudentModel> students = new List<StudentModel>();
-        String connectionString = "Server=tcp:petsafrance.database.windows.net,1433;Initial Catalog=cvik2db;Persist Security Info=False;User ID=sanya;Password=peca009169@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+        public Repository(IConfiguration configuration)
+        {
+            connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
+        }
 
         public StudentModel GetJsonStudent(int studentId)
         {
@@ -41,7 +46,8 @@ namespace cvicenie_mvc.Models
             return students;
         }
 
-        public String Prediction(HttpResponseMessage getData) {
+        public String Prediction(HttpResponseMessage getData)
+        {
             string results = getData.Content.ReadAsStringAsync().Result;
             return results.ToString();
         }
@@ -80,7 +86,7 @@ namespace cvicenie_mvc.Models
                                 Name = reader.GetString(1),
                                 Gender = reader.GetString(2),
                                 City = reader.GetString(3),
-                                Age = reader.GetInt32(4) 
+                                Age = reader.GetInt32(4)
                             };
                             students.Add(student);
                         }
