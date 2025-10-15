@@ -9,7 +9,7 @@ namespace cvicenie_mvc.Models
         private readonly string connectionString;
         public static List<StudentModel> students = new List<StudentModel>();
 
-        public Repository(IConfiguration configuration)
+        public Repository()
         {
             connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
         }
