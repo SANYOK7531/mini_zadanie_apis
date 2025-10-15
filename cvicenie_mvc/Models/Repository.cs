@@ -13,7 +13,7 @@ namespace cvicenie_mvc.Models
 =======
         
 >>>>>>> 264653f3dbfbc2d23c9e2b834f08dee4fb6e7436
-        public Repository(IConfiguration configuration)
+        public Repository()
         {
             connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
         }
