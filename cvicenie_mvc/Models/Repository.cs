@@ -8,12 +8,20 @@ namespace cvicenie_mvc.Models
     {
         private readonly string connectionString;
         public static List<StudentModel> students = new List<StudentModel>();
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 264653f3dbfbc2d23c9e2b834f08dee4fb6e7436
         public Repository(IConfiguration configuration)
         {
             connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 264653f3dbfbc2d23c9e2b834f08dee4fb6e7436
         public StudentModel GetJsonStudent(int studentId)
         {
             return students.Where(e => e.Id == studentId).First();

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("cvicenie_mvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+359ea0b9e71480967dddf7a9962f5fcb766d4b89")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+238b70771a3c2f5957b526e81d555efb167b39c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("cvicenie_mvc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("cvicenie_mvc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
