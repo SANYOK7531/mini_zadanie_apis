@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Filter</title>
+</head>
+<body>
+    <h1>Hello Flask!</h1>
+    <h2>Filter Students by City</h2>
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <button onclick="filterStudents()">Filter</button>
+
+    <h3>Results:</h3>
+    <ul id="studentList"></ul>
+
+    <script>
+        async function filterStudents() {
+            const city = document.getElementById("cityInput").value;
+            const response = await fetch(`/Students?City=${city}`);
+            const data = await response.json();
+
+            const list = document.getElementById("studentList");
+            list.innerHTML = "";
+
+            if (data.error) {
+                list.innerHTML = `<li>${data.error}</li>`;
+                return;
+            }
+
+            data.forEach(student => {
+                const item = document.createElement("li");
+                item.textContent = `${student.Name} (${student.City})`;
+                list.appendChild(item);
+            });
+        }
+    </script>
+</body>
+</html>
