@@ -6,9 +6,6 @@ namespace cvicenie_mvc.Models
 {
     public class Repository
     {
-        private readonly string connectionString;
-        public static List<StudentModel> students = new List<StudentModel>();
-
         public Repository()
         {
             connectionString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
@@ -60,7 +57,7 @@ namespace cvicenie_mvc.Models
             {
                 connection.Open();
                 //String sql = "CREATE TABLE Students (Id INT NOT NULL PRIMARY KEY, Name VARCHAR(40) NOT NULL, Gender VARCHAR(40) NOT NULL, City VARCHAR(40) NOT NULL, Age INT NOT NULL);";
-                String sql = "INSERT INTO Students (Id, Name, Gender, City, Age) VALUES (" + student.Id + ",'" + student.Name + "','" + student.Gender + "','" + student.City + "', " + student.Age + ")";
+                String sql = "INSERT INTO Students (Id, Name, Gender, City, EnrollmentDate) VALUES (" + student.Id + ",'" + student.Name + "','" + student.Gender + "','" + student.City + "', '" + student.EnrollmentDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "')";
                 using (SqlCommand cmd = new SqlCommand(sql, connection)) { cmd.ExecuteNonQuery(); }
             }
         }
@@ -86,7 +83,7 @@ namespace cvicenie_mvc.Models
                                 Name = reader.GetString(1),
                                 Gender = reader.GetString(2),
                                 City = reader.GetString(3),
-                                Age = reader.GetInt32(4)
+                                EnrollmentDate = reader.GetDateTime(4)
                             };
                             students.Add(student);
                         }
@@ -102,14 +99,14 @@ namespace cvicenie_mvc.Models
             students.Where(e => e.Id == studentId).First().Name = student.Name;
             students.Where(e => e.Id == studentId).First().Gender = student.Gender;
             students.Where(e => e.Id == studentId).First().City = student.City;
-            students.Where(e => e.Id == studentId).First().Age = student.Age;
+            students.Where(e => e.Id == studentId).First().EnrollmentDate = student.EnrollmentDate;
 
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sql = "UPDATE Students SET Name ='" + student.Name + "', Gender ='" + student.Gender + "', City ='" + student.City + "', Age =" + student.Age + " WHERE Id=" + studentId + ";";
+                    String sql = "UPDATE Students SET Name ='" + student.Name + "', Gender ='" + student.Gender + "', City ='" + student.City + "', EnrollmentDate ='" + student.EnrollmentDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE Id=" + studentId + ";";
                     using (SqlCommand command = new SqlCommand(sql, connection)) command.ExecuteNonQuery();
                 }
             }

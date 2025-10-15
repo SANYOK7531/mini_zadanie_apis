@@ -16,7 +16,7 @@
 <form method="post">
     <p>
         <label asp-for="Id">Your ID:</label>
-        <input asp-for="Id"/>
+        <input asp-for="Id" />
     </p>
 
     <p>
@@ -26,7 +26,7 @@
 
     <p>
         <label asp-for="Gender">Your Gender:</label>
-        <select asp-for="Gender" >
+        <select asp-for="Gender">
             <option value="Female">Female</option>
             <option value="Male">Male</option>
         </select>
@@ -36,6 +36,13 @@
         <label asp-for="City">Your City:</label>
         <input asp-for="City" />
     </p>
+
+
+    <p>
+        <label asp-for="EnrollmentDate">Enrollment Date:</label>
+        <input asp-for="EnrollmentDate" type="date" />
+    </p>
+
 
     <p><button type="submit">Submit</button></p>
 

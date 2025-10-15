@@ -66,17 +66,15 @@ namespace cvicenie_mvc.Controllers
                 }
             }
         }
-        
-        public IActionResult Student_info(string name, int age, int id = 1)
-        {
 
+        public IActionResult Student_info(string name, DateTime enrollmentDate, int id = 1)
+        {
             StudentModel student = new StudentModel();
             student.Id = id;
             student.Name = name;
             student.Gender = "Male";
             student.City = "Kosice";
-            student.Age = age;
-
+            student.EnrollmentDate = enrollmentDate;
             return View(student);
         }
 

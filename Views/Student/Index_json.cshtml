@@ -10,25 +10,27 @@
 
 <table style="width:50%">
 	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Gender</th>
-			<th>City</th>
-			<th>Scores</th>
-		</tr>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>City</th>
+            <th>Scores</th>
+            <th>Enrollment Date</th>
+        </tr>
 	</thead>
 	<tbody>
 		@foreach (StudentModel e in Model)
 		{
-			<tr>
-				<td>@e.Id</td>
-				<td>@e.Name</td>
-				<td>@e.Gender</td>
-				<td>@e.City</td>
-				<td>@e.Scores</td>
-				<td><a asp-action="Prediction" asp-route-studentId="@e.Id">Predict</a></td>
-			</tr>
+            <tr>
+                <td>@e.Id</td>
+                <td>@e.Name</td>
+                <td>@e.Gender</td>
+                <td>@e.City</td>
+                <td>@e.Scores</td>
+                <td>@e.EnrollmentDate.Value.ToString("yyyy-MM-dd")</td>
+                <td><a asp-action="Prediction" asp-route-studentId="@e.Id">Predict</a></td>
+            </tr>
 		}
 	</tbody>
 </table>

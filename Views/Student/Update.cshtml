@@ -7,7 +7,7 @@
 
 <h2>Update</h2>
 <form method="post">
-   
+
     <p>
         <label asp-for="Name">Your Name:</label>
         <input asp-for="Name" />
@@ -15,7 +15,7 @@
 
     <p>
         <label asp-for="Gender">Your Gender:</label>
-        <select asp-for="Gender" >
+        <select asp-for="Gender">
             <option value="Female">Female</option>
             <option value="Male">Male</option>
         </select>
@@ -24,6 +24,12 @@
     <p>
         <label asp-for="City">Your City:</label>
         <input asp-for="City" />
+    </p>
+
+
+    <p>
+        <label asp-for="EnrollmentDate">Enrollment Date:</label>
+        <input asp-for="EnrollmentDate" type="date" />
     </p>
 
     <p><button type="submit">Submit</button></p>

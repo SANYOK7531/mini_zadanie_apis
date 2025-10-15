@@ -19,6 +19,7 @@
             <th>Name</th>
             <th>Gender</th>
             <th>City</th>
+            <th>Enrollment Date</th>
         </tr>
     </thead>
     <tbody>
@@ -29,9 +30,10 @@
             <td>@student.Name</td>
             <td>@student.Gender</td>
             <td>@student.City</td>
-                <td><a asp-action="Update" asp-route-studentId="@student.Id">Update</a></td>
+            <td>@student.EnrollmentDate.Value.ToString("yyyy-MM-dd")</td>
+            <td><a asp-action="Update" asp-route-studentId="@student.Id">Update</a></td>
             <td>
-                    <form asp-route-studentId="@student.Id" asp-action="Delete" method="post">
+                <form asp-route-studentId="@student.Id" asp-action="Delete" method="post">
                     <button type="submit">Delete</button>
                 </form>
             </td>
