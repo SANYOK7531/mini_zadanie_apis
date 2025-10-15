@@ -1,0 +1,13 @@
+﻿{
+  // Nastavenia logovania aplikácie
+  "Logging": {
+    "LogLevel": {
+      // Predvolená úroveň logovania pre všetky časti aplikácie (Information = bežné informácie, varovania a chyby)
+      "Default": "Information",
+      // Špecifická úroveň logovania pre knižnicu Microsoft.AspNetCore (Warning = len varovania a chyby)
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  // Povolené hosty, ktoré môžu pristupovať k aplikácii ("*" = všetky hosty sú povolené)
+  "AllowedHosts": "*"
+}
