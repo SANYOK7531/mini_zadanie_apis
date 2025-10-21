@@ -1,36 +1,51 @@
+import pyodbc
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-import json
-import numpy as np
-from pathlib import Path
 
 app = Flask(__name__)
 CORS(app)
 
-# файл зі студентами
-DATA_PATH = Path(__file__).parent / "students.json"
+# 🔗 Підключення до Azure SQL
+connection_string = (
+    "Driver={ODBC Driver 18 for SQL Server};"
+    "Server=tcp:petsafrance.database.windows.net,1433;"
+    "Database=cvik2db;"
+    "Uid=sanya;"
+    "Pwd=peca009169@;"
+    "Encrypt=yes;"
+    "TrustServerCertificate=no;"
+    "Connection Timeout=30;"
+)
 
 @app.get("/Students")
 def students():
-    """
-    Vracia obsah súboru students.json (s voliteľným filtrovaním podľa mesta).
-    """
-    city = request.args.get("City")  # <-- отримуємо місто з URL
+    city = request.args.get("City")
+    students = []
 
     try:
-        with open(DATA_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except FileNotFoundError:
-        return jsonify({"error": "students.json not found"}), 500
-    except json.JSONDecodeError:
-        return jsonify({"error": "students.json has invalid JSON"}), 500
+        with pyodbc.connect(connection_string) as conn:
+            cursor = conn.cursor()
 
-    # якщо користувач вказав місто → відфільтрувати
-    if city:
-        city_lower = city.strip().lower()
-        data = [x for x in data if x.get("City", "").lower() == city_lower]
+            if city:
+                query = "SELECT Id, Name, Gender, City, EnrollmentDate FROM Students WHERE City = ?"
+                cursor.execute(query, (city,))
+            else:
+                query = "SELECT Id, Name, Gender, City, EnrollmentDate FROM Students"
+                cursor.execute(query)
 
-    return jsonify(data), 200
+            for row in cursor.fetchall():
+                students.append({
+                    "Id": row[0],
+                    "Name": row[1],
+                    "Gender": row[2],
+                    "City": row[3],
+                    "EnrollmentDate": row[4].strftime("%Y-%m-%d")
+                })
+
+        return jsonify(students), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.get("/Predict")
